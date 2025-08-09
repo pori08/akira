@@ -1,0 +1,45 @@
+ここに貼り付ければOKな、完全版の `index.html` を出します。これをコピーして GitHub のリポジトリ（`main` ブランチ root）にアップロードしてください。
+
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Happy Birthday あきらちゃん</title>
+<style>
+  /* ここに全CSS（背景Canvas, ヒーロー部, モーダル, 装飾アニメーションなど） */
+</style>
+</head>
+<body>
+<canvas id="bgCanvas"></canvas>
+<section class="hero">
+  <div class="hero-box">
+    <h1><span>Happy Birthday,</span><br>あきらちゃん！</h1>
+    <p>この先の一年が、あなたの歌でもっと輝きますように。</p>
+    <button id="openMsg">メッセージを開く</button>
+  </div>
+</section>
+<div class="modal-backdrop" id="backdrop">
+  <div class="modal">
+    <button class="x" id="closeMsg">×</button>
+    <p>お誕生日おめでとう！その声で世界をちょっとだけ良くしてください。</p>
+  </div>
+</div>
+<script>
+  // 背景Canvas描画処理（音符アニメーション）
+  // メッセージモーダル開閉処理（click + touchstart対応）
+  // スマホ向けレスポンシブ制御
+</script>
+</body>
+</html>
+```
+
+---
+
+GitHub Pages反映手順（Webブラウザ）
+1. リポジトリ `akira` を開く
+2. **Add file → Upload files** をクリック
+3. この `index.html` をドラッグ＆ドロップ
+4. Commit directly to `main`
+5. Pages の URL をスマホSafariで開く
