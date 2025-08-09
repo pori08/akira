@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Happy Birthday あきらちゃん</title>
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ffe0f0, #d0f0ff);
+    overflow: hidden;
+  }
+  #bgCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  .hero {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .hero-box {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(12px);
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.2);
+    max-width: 90%;
+  }
+  h1 span {
+    font-size: 1.5em;
+    background: linear-gradient(90deg, #6EC1E4, #FF7BAC);
+    -webkit-background-clip: text;
+    color: transparent;
+    display: inline-block;
+  }
+  h1 {
+    font-size: 2em;
+    margin: 0.2em 0;
+  }
+  button {
+    background: linear-gradient(90deg, #6EC1E4, #FF7BAC);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-top: 15px;
+  }
+  .modal-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    justify-content: center;
+    align-items: center;
+  }
+  .modal {
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 80%;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    animation: fadeIn 0.4s ease;
+  }
+  .x {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+<canvas id="bgCanvas"></canvas>
+<section class="hero">
+  <div class="hero-box">
+    <h1><span>Happy Birthday,</span><br>あきらちゃん！</h1>
+    <p>この先の一年が、あなたの歌でもっと輝きますように。</p>
+    <button id="openMsg">メッセージを開く</button>
+  </div>
+</section>
+<div class="modal-backdrop" id="backdrop">
+  <div class="modal">
+    <button class="x" id="closeMsg">×</button>
+    <p>お誕生日おめでとう！その声で世界をちょっとだけ良くしてください。</p>
+  </div>
+</div>
+<script>
+  const canvas = document.getElementById('bgCanvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const notes = [];
+  for(let i=0;i<30;i++){
+    notes.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,speed:1+Math.random()*2,size:20+Math.random()*20});
+  }
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.font = '20px Arial';
+    ctx.fillStyle = 'rgba(0,0,0,0.3)';
+    notes.forEach(n=>{
+      ctx.fillText('🎵',n.x,n.y);
+      n.y += n.speed;
+      if(n.y>canvas.height) n.y= -n.size;
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+
+  const openBtn = document.getElementById('openMsg');
+  const closeBtn = document.getElementById('closeMsg');
+  const backdrop = document.getElementById('backdrop');
+  openBtn.addEventListener('click',()=>{backdrop.style.display='flex';});
+  closeBtn.addEventListener('click',()=>{backdrop.style.display='none';});
+</script>
+</body>
+</html>
